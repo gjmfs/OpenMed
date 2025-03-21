@@ -1,0 +1,28 @@
+.SignUp button {
+  color: #b8d0eb;
+  background-color: #2c2a4a;
+  width: 20vw;
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #4f518c;
+}
+.SignUp .col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.SignUp {
+  height: 100vh;
+  background: linear-gradient(60deg, #b8d0eb, #4e148c);
+}
+
+@media screen and (max-width: 768px) {
+  .SignUp button {
+    width: 80vw;
+    font-size: 1rem;
+  }
+  .SignUp .col {
+    margin-top: 20px;
+  }
+}

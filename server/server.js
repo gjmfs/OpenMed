@@ -4,6 +4,8 @@ const admin = require("firebase-admin");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+const User = require("./model/User");
+
 const serviceAccount = require("../serviceAccountKey.json");
 
 admin.initializeApp({
@@ -13,24 +15,6 @@ admin.initializeApp({
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-// MongoDB Connection
-mongoose
-  .connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
-
-// User Schema and Model
-const userSchema = new mongoose.Schema({
-  uid: { type: String, required: true, unique: true },
-  email: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-});
-
-const User = mongoose.model("User", userSchema);
 
 app.post("/api/verify-token", async (req, res) => {
   const idToken = req.headers.authorization?.split("Bearer ")[1];
@@ -43,11 +27,13 @@ app.post("/api/verify-token", async (req, res) => {
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     const uid = decodedToken.uid;
     const email = decodedToken.email;
+    const name = decodedToken.name;
+    const profile = decodedToken.picture;
 
     let user = await User.findOne({ uid });
 
     if (!user) {
-      user = new User({ uid, email });
+      user = new User({ uid, email, name, profile });
       await user.save();
       return res
         .status(201)
@@ -62,6 +48,15 @@ app.post("/api/verify-token", async (req, res) => {
 });
 
 const port = process.env.PORT || 4001;
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+mongoose
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("MongoDB Connected");
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`);
+    });
+  })
+  .catch((err) => console.log(err));

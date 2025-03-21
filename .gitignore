@@ -1,0 +1,8 @@
+node_modules
+#must add these files under those folders
+#mongodb and backend port no
+server/.env
+#firebase service account key
+serviceAccountKey.json
+#firebase config
+src/firebase.ts
