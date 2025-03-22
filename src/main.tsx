@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./styles/Landing.css";
 import "./styles/SignUp.css";
 import "./styles/index.css";
+import "./styles/Home.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

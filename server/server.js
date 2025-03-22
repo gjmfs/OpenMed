@@ -13,8 +13,19 @@ admin.initializeApp({
 });
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: "https://e7e7-43-252-15-140.ngrok-free.app", // Allow only your ngrok URL
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log(`Incoming request from: ${req.ip}`); // Log the IP
+  next();
+});
 
 app.post("/api/verify-token", async (req, res) => {
   const idToken = req.headers.authorization?.split("Bearer ")[1];
@@ -43,6 +54,11 @@ app.post("/api/verify-token", async (req, res) => {
     }
   } catch (error) {
     console.error("Token verification error:", error);
+    if (error.code === "auth/id-token-expired") {
+      return res.status(401).json({ error: "Token expired" });
+    } else if (error.code === "auth/argument-error") {
+      return res.status(400).json({ error: "Invalid token format" });
+    }
     return res.status(401).json({ error: "Unauthorized" });
   }
 });
