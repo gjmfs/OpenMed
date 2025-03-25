@@ -1,0 +1,114 @@
+:root {
+  --orange: #ff7f50;
+  --light: #f8f9fa;
+}
+
+.OpenMed {
+  margin-top: 16px;
+  padding: 10px;
+  width: auto;
+  background-color: #252525;
+  height: 100vh;
+  border: 1px solid white;
+  color: aliceblue;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.msg {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.ai-chat,
+.user-chat {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.ai-chat {
+  align-items: flex-start; /* Align AI chat to the left */
+}
+
+.user-chat {
+  align-items: flex-end;
+  background-color: #3b3b3b;
+  padding: 10px;
+  border-radius: 12px;
+  margin-left: auto;
+  margin-right: 10px;
+  width: fit-content;
+}
+
+.ai-chat p,
+.user-chat p {
+  color: aliceblue;
+  font-size: 16px;
+  margin: 5px 0 0 0;
+  width: 100%;
+}
+
+.ai-chat p {
+  color: aqua;
+}
+
+.user-chat p {
+  text-align: right;
+  margin-right: 8px;
+}
+
+.user-profile,
+.ai-chat svg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+
+.ai-chat svg {
+  color: aqua;
+}
+
+.OpenMed form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.OpenMed form input {
+  flex-grow: 1;
+  padding: 8px;
+  background-color: transparent;
+  border: 1px solid var(--orange);
+  color: var(--light);
+  border-radius: 4px;
+  outline: none;
+}
+
+.OpenMed form button {
+  padding: 8px 12px;
+  color: white;
+  border: 1px solid var(--orange);
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+  outline: none;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+@media screen and (max-width: 400px) {
+  .user-chat p,
+  .ai-chat p {
+    font-size: 12px;
+  }
+}

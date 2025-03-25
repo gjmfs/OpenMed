@@ -1,0 +1,21 @@
+{
+  "name": "openmed",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cd server/functions && npm run serve",
+    "client": "cd client && npm run client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gjmfs/OpenMed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gjmfs/OpenMed/issues"
+  },
+  "homepage": "https://github.com/gjmfs/OpenMed#readme",
+  "description": ""
+}

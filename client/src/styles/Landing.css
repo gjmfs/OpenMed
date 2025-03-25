@@ -1,0 +1,6 @@
+.landing-buttons button:hover {
+  background-color: #f0f0f0;
+  color: #000;
+  border: 1px solid #000;
+  transition: 0.3s;
+}

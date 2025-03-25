@@ -1,0 +1,134 @@
+:root {
+  --color-1: #240046;
+  --text-color: #e0c3fc;
+  --accent-color: #ffffff;
+}
+* {
+  margin: 0%;
+  padding: 0%;
+}
+nav {
+  height: 60px;
+  background-color: var(--color-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 20px;
+  border-radius: 12px;
+}
+.links-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+}
+nav .title {
+  height: 100%;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+}
+nav a.active {
+  color: #f20089;
+}
+nav a:hover {
+  color: #c0fdff;
+}
+nav .home-link {
+  margin-right: auto;
+}
+
+#sidebar-active {
+  display: none;
+}
+.open-sidebar-button,
+.close-sidebar-button {
+  display: none;
+  padding: 0px 20px;
+}
+
+#logo {
+  text-align: left;
+  max-height: 150px;
+  min-height: 40px;
+}
+.icons {
+  height: 32px;
+  width: 32px;
+}
+.profile {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  margin: 10px;
+  border: 1px solid var(--text-color);
+}
+
+@media (max-width: 575.98px) {
+  #logo {
+    order: -3;
+  }
+  .profile {
+    height: 50px;
+    width: 50px;
+  }
+  .links-container {
+    right: -100%;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    justify-content: flex-start;
+    z-index: 10;
+    width: 60vw;
+    background-color: var(--color-1);
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.75);
+    transition: 0.75s ease-out;
+  }
+  .links-container img[alt="user-profile"] {
+    order: -1;
+    margin-bottom: 10px;
+  }
+  .links-container .title[to="/home"] {
+    order: 0;
+  }
+  nav {
+    margin: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  nav a {
+    box-sizing: border-box;
+    height: auto;
+    width: 100%;
+
+    justify-content: flex-start;
+  }
+  /* Target the menu buttons within the nav element */
+  nav .open-sidebar-button {
+    display: block;
+    order: 1; /* Place after the logo */
+    padding: 20px;
+  }
+  nav .close-sidebar-button {
+    display: block;
+    order: -1; /* Place after the logo */
+    padding: 20px;
+  }
+  #sidebar-active:checked ~ .links-container {
+    right: 0;
+  }
+
+  #sidebar-active:checked ~ #overlay {
+    background-color: rgb(0, 0, 0, 0.3);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
