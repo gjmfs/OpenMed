@@ -17,7 +17,7 @@ export const Landing = () => {
         <Link to={"/signup"} className="btn btn-outline-light me-2">
           SignUp
         </Link>
-        <Link to={"/signin"} className="btn btn-outline-light">
+        <Link to={"/login"} className="btn btn-outline-light">
           SignIn
         </Link>
       </header>

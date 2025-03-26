@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { IoMdSend } from "react-icons/io";
+import { Typewriter } from "react-simple-typewriter";
 
 export const OpenMed = (api: OpenMedProps) => {
   const userData = JSON.parse(sessionStorage.getItem("userData") || "");
@@ -21,7 +22,11 @@ export const OpenMed = (api: OpenMedProps) => {
   const msg = chat.map((chat, index) => (
     <div key={index} className={chat.id === 1 ? "ai-chat" : "user-chat"}>
       {chat.profile}
-      <p>{chat.msg}</p>
+      {chat.id === 1 ? (
+        <Typewriter words={[chat.msg]} typeSpeed={10} delaySpeed={100} />
+      ) : (
+        <p>{chat.msg}</p>
+      )}
     </div>
   ));
 

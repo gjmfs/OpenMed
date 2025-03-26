@@ -11,6 +11,8 @@ import "./styles/SignUp.css";
 import "./styles/index.css";
 import "./styles/Home.css";
 import "./styles/OpenMed.css";
+import "./styles/App.css";
+import "./styles/NavBar.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

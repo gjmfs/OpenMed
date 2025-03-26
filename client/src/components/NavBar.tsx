@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import menu from "../assets/icons/menu.svg";
 import close from "../assets/icons/close.svg";
 import OpenMed from "../assets/icons/OpenMedLight.png";
-import "./NavBar.css";
 
 export const NavBar = () => {
   const userData = JSON.parse(sessionStorage.getItem("userData") || "");

@@ -7,7 +7,8 @@ import Login from "./pages/Login";
 import { OpenMed } from "./pages/OpenMed";
 
 export const App = () => {
-  const url = "http://localhost:5001/";
+  const url = import.meta.env.VITE_PORT;
+  console.log(url);
   const location = useLocation();
   const showNavBar = !["/signup", "/", "/login"].includes(location.pathname);
   return (
