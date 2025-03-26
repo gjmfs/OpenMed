@@ -16,6 +16,9 @@
   height: 100vh;
   background: linear-gradient(60deg, #b8d0eb, #4e148c);
 }
+.SignUp select {
+  width: 20vw;
+}
 
 @media screen and (max-width: 768px) {
   .SignUp button {

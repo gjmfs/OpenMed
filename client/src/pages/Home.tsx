@@ -2,17 +2,32 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const userData = JSON.parse(sessionStorage.getItem("userData") || "");
-    console.log(userData);
-    setUserType(userData.userType);
-    if (!userData) {
-      navigate("/signin");
-    }
-  }, []);
-
   const [userType, setUserType] = useState();
+
+  const navigate = useNavigate();
+  const [profile, setProfile] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const userDataString = sessionStorage.getItem("userData");
+      if (userDataString) {
+        const userData = JSON.parse(userDataString);
+        if (userData && userData.profile) {
+          setProfile(userData.profile);
+        } else {
+          setProfile(null); // Set to null if profile is missing or empty
+        }
+        if (!userData) {
+          navigate("/login");
+        }
+      } else {
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Error parsing userData:", error);
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return (
     <div className="Home">

@@ -1,12 +1,36 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import menu from "../assets/icons/menu.svg";
 import close from "../assets/icons/close.svg";
 import OpenMed from "../assets/icons/OpenMedLight.png";
 
 export const NavBar = () => {
-  const userData = JSON.parse(sessionStorage.getItem("userData") || "");
-  const profile = userData.profile;
+  const navigate = useNavigate();
+  const [profile, setProfile] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const userDataString = sessionStorage.getItem("userData");
+      if (userDataString) {
+        const userData = JSON.parse(userDataString);
+        if (userData && userData.profile) {
+          setProfile(userData.profile);
+        } else {
+          setProfile(null); // Set to null if profile is missing or empty
+        }
+        if (!userData) {
+          navigate("/login");
+        }
+      } else {
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Error parsing userData:", error);
+      navigate("/login");
+    }
+  }, [navigate]);
+
   console.log(profile);
 
   return (
@@ -35,7 +59,7 @@ export const NavBar = () => {
         <NavLink className="title" to="/history">
           History
         </NavLink>
-        <img className="profile" src={profile} alt="user-profile" />
+        <img className="profile" src={profile || ""} alt="user-profile" />
       </div>
     </nav>
   );

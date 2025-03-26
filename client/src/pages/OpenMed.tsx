@@ -1,10 +1,19 @@
 import axios from "axios";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { IoMdSend } from "react-icons/io";
 import { Typewriter } from "react-simple-typewriter";
+import { useNavigate } from "react-router-dom";
 
 export const OpenMed = (api: OpenMedProps) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem("userData") || "");
+    if (!userData) {
+      navigate("/login");
+    }
+  }, []);
+
   const userData = JSON.parse(sessionStorage.getItem("userData") || "");
   const userProfile = (
     <img className="user-profile" src={userData.profile} alt="user-profile" />

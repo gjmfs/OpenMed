@@ -59,9 +59,9 @@ export const Landing = () => {
         {/* Feature Cards */}
         <div className="row justify-content-center">
           <div className="col-md-3 mb-4">
-            <div className="card bg-secondary text-white p-3">
+            <div className="card bg-light text-dark p-3">
               <div className="card-body">
-                <h5 className="card-title">OpenMed</h5>
+                <h4 className="card-title">OpenMed</h4>
                 <p className="card-text">
                   An AI assistant that can assist you like a consultant in real
                   time
@@ -70,9 +70,9 @@ export const Landing = () => {
             </div>
           </div>
           <div className="col-md-3 mb-4">
-            <div className="card bg-secondary text-white p-3">
+            <div className="card bg-light text-dark p-3">
               <div className="card-body">
-                <h5 className="card-title">How it works</h5>
+                <h4 className="card-title">How it works</h4>
                 <p className="card-text">
                   Let get you started with OpenMed in 3 simple steps.
                 </p>
@@ -80,9 +80,9 @@ export const Landing = () => {
             </div>
           </div>
           <div className="col-md-3 mb-4">
-            <div className="card bg-secondary text-white p-3">
+            <div className="card bg-light text-dark p-3">
               <div className="card-body">
-                <h5 className="card-title">Support</h5>
+                <h4 className="card-title">Support</h4>
                 <p className="card-text">
                   We are here to help you 24/7. Feel free to contact us.
                 </p>

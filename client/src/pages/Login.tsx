@@ -10,19 +10,15 @@ const Login = (props: LoginProps) => {
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      console.log(result);
       const token = await result.user.getIdToken();
-
-      const response = await axios.post(`${props.api}api/verify-token`, {
+      const response = await axios.post(`${props.api}login`, {
         token,
       });
 
       // Access the response data
 
-      const userData = await response.data.user;
-      console.log(userData);
+      const userData = await response.data;
       sessionStorage.setItem("userData", JSON.stringify(userData));
-      console.log("User Data:", userData);
 
       if (sessionStorage.getItem("userData")) {
         navigate("/home");

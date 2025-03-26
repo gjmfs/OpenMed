@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "cd server/functions && npm run serve",
-    "client": "cd client && npm run client"
+    "client": "cd client && npm run client",
+    "deploy-c": "cd client && npm run build && firebase deploy",
+    "deploy-s": "cd server/functions && firebase deploy"
   },
   "repository": {
     "type": "git",
