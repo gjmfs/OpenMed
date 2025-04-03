@@ -76,5 +76,4 @@ export default SignUp;
 interface SignUpProps {
   children?: React.ReactNode;
   api?: string;
-  // Add other props here
 }

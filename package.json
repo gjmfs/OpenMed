@@ -19,5 +19,8 @@
     "url": "https://github.com/gjmfs/OpenMed/issues"
   },
   "homepage": "https://github.com/gjmfs/OpenMed#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "genkit": "^1.4.0"
+  }
 }

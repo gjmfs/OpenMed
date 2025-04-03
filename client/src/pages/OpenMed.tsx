@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { IoMdSend } from "react-icons/io";
-import { Typewriter } from "react-simple-typewriter";
 import { useNavigate } from "react-router-dom";
+import DOMPurify from "dompurify";
 
 export const OpenMed = (api: OpenMedProps) => {
   const navigate = useNavigate();
@@ -28,16 +28,51 @@ export const OpenMed = (api: OpenMedProps) => {
     },
   ]);
 
-  const msg = chat.map((chat, index) => (
-    <div key={index} className={chat.id === 1 ? "ai-chat" : "user-chat"}>
-      {chat.profile}
-      {chat.id === 1 ? (
-        <Typewriter words={[chat.msg]} typeSpeed={10} delaySpeed={100} />
-      ) : (
-        <p>{chat.msg}</p>
-      )}
-    </div>
-  ));
+  // const msg = chat.map((chat, index) => (
+  //   <div key={index} className={chat.id === 1 ? "ai-chat" : "user-chat"}>
+  //     {chat.profile}
+  //     {chat.id === 1 ? (
+  //       // <Typewriter words={[]} typeSpeed={10} delaySpeed={100} />
+  //       <p>
+  //         {chat.msg
+  //           .replace(/##\s(.*?):/g, "<h3>$1:</h3>")
+  //           .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+  //           .replace(/\n/g, "<br />")}
+  //       </p>
+  //     ) : (
+  //       <p>{chat.msg}</p>
+  //     )}
+  //   </div>
+  // ));
+
+  const msg = chat.map((chatItem, index) => {
+    console.log("ChatItem:", chatItem);
+
+    const formattedMsg =
+      chatItem.id === 1
+        ? chatItem.msg
+            .replace(/##\s(.*?):/g, "<h3>$1:</h3>")
+            .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+            .replace(/\n/g, "<br />")
+        : chatItem.msg;
+
+    console.log("Formatted Message:", formattedMsg);
+
+    return (
+      <div key={index} className={chatItem.id === 1 ? "ai-chat" : "user-chat"}>
+        {chatItem.profile}
+        {chatItem.id === 1 ? (
+          <p
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(formattedMsg),
+            }}
+          />
+        ) : (
+          <p>{formattedMsg}</p>
+        )}
+      </div>
+    );
+  });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     // Corrected type
@@ -58,11 +93,10 @@ export const OpenMed = (api: OpenMedProps) => {
       await axios
         .post(`${api.api}openmed/chat`, { req: userReq })
         .then((data) => {
-          console.log(data);
-
+          const response = data.data.result;
           setChat((prevChat) => [
             ...prevChat,
-            { id: 1, msg: data.data, profile: <AiOutlineUser /> },
+            { id: 1, msg: response, profile: <AiOutlineUser /> },
           ]);
         });
     } catch (err) {

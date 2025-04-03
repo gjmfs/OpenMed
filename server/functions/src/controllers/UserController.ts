@@ -1,7 +1,7 @@
-const admin = require("firebase-admin");
-const User = require("../model/User");
+import admin from "firebase-admin";
+import User from "../model/User";
 
-const signup = async (req, res) => {
+export const signup = async (req: any, res: any) => {
   const idToken = await req.body.token;
   const userType = await req.body.user;
   console.log("Token:", idToken);
@@ -11,7 +11,6 @@ const signup = async (req, res) => {
   }
 
   const decodedToken = await admin.auth().verifyIdToken(idToken);
-  console.log("Decoded Token:", decodedToken);
   const uid = decodedToken.uid;
   const email = decodedToken.email;
   const name = decodedToken.name;
@@ -31,8 +30,8 @@ const signup = async (req, res) => {
       userType: userType,
     })
       .then((data) => {
-        res.json(data);
         console.log("new user:", data);
+        res.json(data);
       })
       .catch((err) => {
         console.error("Error during user creation:", err);
@@ -43,11 +42,10 @@ const signup = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
+export const login = async (req: any, res: any) => {
   const idToken = await req.body.token;
-  const userType = await req.body.user;
-
-  if (!idToken && !userType) {
+  console.log(idToken);
+  if (!idToken) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
@@ -62,5 +60,3 @@ const login = async (req, res) => {
     })
     .catch((err) => res.json(err));
 };
-
-module.exports = { signup, login };

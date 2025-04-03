@@ -14,4 +14,5 @@ server/firebase.json
 server/functions/node_modules
 server/functions/serviceAccountKey.json
 server/functions/.env
-server/functions/firebase-debug.log
+server/functions/firebase.json
+server/functions/.firebaserc

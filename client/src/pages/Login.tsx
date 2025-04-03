@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const Login = (props: LoginProps) => {
   const navigate = useNavigate();
-  const handleGoogleSignIn = async () => {
+  const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      console.log(result);
       const token = await result.user.getIdToken();
       const response = await axios.post(`${props.api}login`, {
         token,
@@ -18,6 +19,7 @@ const Login = (props: LoginProps) => {
       // Access the response data
 
       const userData = await response.data;
+      console.log(userData);
       sessionStorage.setItem("userData", JSON.stringify(userData));
 
       if (sessionStorage.getItem("userData")) {
@@ -36,7 +38,7 @@ const Login = (props: LoginProps) => {
             <img src={DigitalHealth} className="img-fluid" alt="Healthcare" />
           </div>
           <div className="col">
-            <button onClick={handleGoogleSignIn}>
+            <button onClick={handleGoogleLogin}>
               <FcGoogle style={{ marginRight: "8px" }} /> Sign In with Google
             </button>
           </div>
