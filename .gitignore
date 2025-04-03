@@ -16,3 +16,4 @@ server/functions/serviceAccountKey.json
 server/functions/.env
 server/functions/firebase.json
 server/functions/.firebaserc
+server/functions/lib
