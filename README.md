@@ -71,6 +71,7 @@ Install Server Packages
 ```bash 
 npm run install-server
 ```
+> **Note:** These command must run from project root directory. otherwise it won't work
 
 ## Environmet file setup for Frontend
  
@@ -183,6 +184,25 @@ npm run server
 ```bash 
 npm run client
 ```
+> **Note:** These command must run from project root directory. otherwise it won't work
+
+## Deployment
+We made some npm script to reduce deploy commands for the developer \
+To deploy this project run
+
+* for client
+```bash
+  npm run deploy-c
+```
+
+* for server
+```bash
+  npm run deploy-s
+```
+> **Note:** These command must run from project root directory. otherwise it won't work
+
+
+
 ## For Issues
 if you're getting some errors you need to initialize firebase functions inside of server folder.
 
