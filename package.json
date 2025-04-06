@@ -4,6 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "install-client": "cd client && npm install",
+    "install-server": "cd server/functions && npm install",
     "server": "cd server/functions && npm run serve",
     "client": "cd client && npm run client",
     "deploy-c": "cd client && npm run build && firebase deploy",
